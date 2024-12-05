@@ -1,0 +1,7 @@
+tests/*
+.venv/*
+.vscode/*
+poetry.lock
+*/__pycache__
+runs/*
+

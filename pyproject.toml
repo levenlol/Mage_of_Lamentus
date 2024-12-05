@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "mage_of_lamentus"
+version = "0.1.0"
+description = "Let's see how good mage of lamentus really are."
+authors = ["Paolo Bernacca <bernaccapaolo@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+numpy = "<2"
+
+matplotlib = ">=3.7.1"
+torchinfo = ">=1.7.2"
+tqdm = ">=4.65.0"
+requests = ">=2.32.0"
+validators = ">=0.34.0"
+
