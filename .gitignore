@@ -4,4 +4,4 @@ tests/*
 poetry.lock
 */__pycache__
 runs/*
-
+secrets/*
