@@ -19,7 +19,8 @@ class PriceUpdater:
         creds = ServiceAccountCredentials.from_json_keyfile_name(credential_path, scope)
         client = gspread.authorize(creds)
         
-        url = "https://docs.google.com/spreadsheets/d/1CD867FiqKXMxrvW-ogIfVaGCkl5zxk6ka2tuXA9yx_4/edit?gid=0#gid=0"
+        # mage of lamentus doc link.
+        url = "https://docs.google.com/spreadsheets/d/1T71vR-M9ut3xvDamhMEr8iTymTA1mneLmsesDyeyxnY/edit?gid=0#gid=0"
 
         # Open the spreadsheet
         self.sheet = client.open_by_url(url).sheet1
@@ -33,32 +34,40 @@ class PriceUpdater:
         :param price_data: List of tuples (name, price_usd, price_eur)
         """
         # Get all existing records
-        existing_records = self.sheet.get_all_records()
+        head = 4
+        existing_records = self.sheet.get_all_records(head=head)
         
-        for name, price_usd, price_eur in price_data:
+        for data in price_data:
             # Try to find existing record
+            name, price_usd, price_eur = data['name'], data['price_usd'], data['price_eur']
+            set_code, collector_number = data['set_code'], data['collector_number']
+            uri = data['uri']
+
+            name = name + " (" + set_code + ") " + collector_number
+            hname = f'=HYPERLINK("{uri}"; "{name}")'
+
             existing_record = None
-            for idx, record in enumerate(existing_records, start=2):  # Start at 2 because of header row
-                if record['name'] == name:
+            for idx, record in enumerate(existing_records):  # Start at 5 because of header row and other infos
+                if record['Card Name'] == name:
                     existing_record = (idx, record)
                     break
             
             if existing_record:
                 # Update existing record
                 row_idx, record = existing_record
-                self.sheet.update_cell(row_idx, 4, price_usd)  # Update current USD price
-                self.sheet.update_cell(row_idx, 5, price_eur)  # Update current EUR price
+                self.sheet.update_cell(row_idx + head + 1, 5, price_usd)  # Update current USD price
+                self.sheet.update_cell(row_idx + head + 1, 4, price_eur)  # Update current EUR price
             else:
                 # Add new record
                 new_row = [
-                    name,  # name
-                    price_usd,  # start price USD
+                    hname,  # name
                     price_eur,  # start price EUR
-                    price_usd,  # current price USD
-                    price_eur   # current price EUR
+                    price_usd,  # start price USD
+                    price_eur,   # current price EUR
+                    price_usd  # current price USD
                 ]
-                self.sheet.append_row(new_row)
-                existing_records.append(dict(zip(['name', 'startpriceusd', 'startpriceeur', 'currentpriceusd', 'currentpriceeur'], new_row)))
+                self.sheet.append_row(new_row,value_input_option='USER_ENTERED')
+
 
 
 def main():

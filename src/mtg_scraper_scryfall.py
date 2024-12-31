@@ -3,6 +3,7 @@ import json
 from typing import List, Dict, Optional
 import time
 import validators
+from tqdm import tqdm
 
 
 class ScryfallPriceScraper:
@@ -196,9 +197,10 @@ def update_cards_data(cards : List, sleep_time:float = 0.06):
         sleep_time = 0.06
     
     data = []
-    for card in cards:
+    for card in tqdm(cards, desc="Updating cards", unit="card", bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}] - {postfix}"):
+        tqdm.write(f"Updating card: {card['card_name']}...")
+        #print(f"Updating card: {card['card_name']}...")
         prices = ScryfallPriceScraper.get_card_prices(card)
-        
 
         # update price data
         for price in prices:
@@ -210,9 +212,10 @@ def update_cards_data(cards : List, sleep_time:float = 0.06):
                 'price_usd': price['prices']['usd'],
                 'price_eur_foil': price['prices']['eur_foil'],
                 'price_usd_foil': price['prices']['usd_foil'],
+                'uri': price['uri']
             })
 
-        time.sleep(sleep_time) # sleep for 60 ms
+        time.sleep(sleep_time)  # sleep for 60 ms
     return data
 
 if __name__ == "__main__":

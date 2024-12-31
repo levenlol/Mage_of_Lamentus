@@ -23,7 +23,8 @@ def validate_cards(card_name, expansion, number):
     Prevents offensive or invalid names.
     """
 
-    cards = ScryfallPriceScraper.get_card_prices(card_name, expansion if expansion != '_' else "", number if number != '_' else "")
+    dict = {'card_name':card_name, 'expansion': expansion, 'collector_number': number}
+    cards = ScryfallPriceScraper.get_card_prices(dict)
 
     if len(cards) == 0:
         show_error(f"Invalid card name: {card_name} set: {expansion} number: {number}")
@@ -66,6 +67,7 @@ def log_card_collection(filename='data/cards_list.txt'):
     except FileNotFoundError:
         unique_lines = set()
 
+    os.chmod(filename, 0o666)  # Change file permission to read-write
     with open(filename, 'a', encoding='utf-8') as file:
         while True:
             # Get card name (mandatory)
@@ -84,7 +86,7 @@ def log_card_collection(filename='data/cards_list.txt'):
                 line += f"{card['prices']['eur']} | {card['prices']['eur_foil']} | "
                 line += f"{card['prices']['tix']} | {today} | {card['uri']}\n"
 
-                if line_id not in unique_lines:
+                if not any(existing_line.startswith(line_id) for existing_line in unique_lines):
                     unique_lines.add(line_id)
                     file.write(line_id + line)
                 else:

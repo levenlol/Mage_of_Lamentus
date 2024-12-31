@@ -1,7 +1,6 @@
 #card name | code | collector number | usd | usd foil | eur | eur foil | tix | date_time | uri
 Shroofus Sproutsire | j25 | 54 | 19.14 | None | 13.69 | None | None | 02/12/2024 | https://api.scryfall.com/cards/d29839f0-afe0-4caa-9628-655738aecce4
 Brightcap Badger // Fungus Frolic | blc | 28 | 3.63 | None | 0.90 | None | 1.75 | 02/12/2024 | https://api.scryfall.com/cards/0e843102-b8cc-4bc8-872e-79924197f4cc 
-Brightcap Badger // Fungus Frolic | blc | 62 | 1.49 | None | None | 0.45 | 0.30 | 02/12/2024 | https://api.scryfall.com/cards/9df82a20-309e-4581-9f3f-e9ba9250747b 
 Zombify | p06 | 6 | 2.12 | None | 0.74 | None | None | 02/12/2024 | https://api.scryfall.com/cards/0c6d4039-dc57-4c89-b02c-2f3147292127 
 Lightning Helix | p06 | 7 | 10.04 | None | 3.39 | None | None | 02/12/2024 | https://api.scryfall.com/cards/4ec9e67b-1b4e-4e4e-9758-be697d308f16 
 Thrumming Stone | 2x2 | 315 | 14.10 | 10.64 | 3.23 | 3.46 | 0.06 | 02/12/2024 | https://api.scryfall.com/cards/14adc0af-de61-4872-916c-3cf480dece46 
@@ -11,3 +10,5 @@ Nahiri, Heir of the Ancients | znr | 230 | 0.64 | 1.09 | 1.07 | 1.58 | 0.02 | 26
 Mech Hangar | neo | 270 | 0.46 | 0.49 | 0.45 | 0.47 | 0.03 | 26/11/2024 | https://api.scryfall.com/cards/c093984d-38cd-4b49-b179-1e289ab442d1 
 Enlistment Officer | apc | 9 | 0.27 | 1.91 | 0.23 | 2.72 | 0.04 | 05/12/2024 | https://api.scryfall.com/cards/38138bb4-25ea-4aaf-8b1c-e9e60678fc6b 
 Starlit Sanctum | ons | 325 | 0.29 | 11.00 | 0.28 | 12.00 | 0.04 | 05/12/2024 | https://api.scryfall.com/cards/ace5e601-2583-4d9c-8bdf-aa33666c717c 
+Orcish Bowmasters | ltr | 103 | 36.44 | 36.99 | 37.95 | 45.83 | 22.26 | 30/12/2024 | https://api.scryfall.com/cards/7c024bae-5631-4e20-ac69-df392ac9e109
+The One Ring | ltr | 246 | 65.51 | 70.11 | 47.30 | 67.21 | 10.65 | 30/12/2024 | https://api.scryfall.com/cards/d5806e68-1054-458e-866d-1f2470f682b2
